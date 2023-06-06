@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Taco Cloud</title>
+    </head>
+    <body>
+    <form method="post" th:object="${taco}">
+            <h1>Design your taco!</h1>
+            <a href="/checkTacos">Check created tacos</a>
+            <a href="/completeOrder">Make an order</a>
+
+            <img th:src="@{/images/TacoCloud.png}"/>
+
+            <h3>Designate your wrap:</h3>
+            <div th:each="ingredients : ${wrap}" id="wrap">
+                <input th:field="*{ingredients}" type="checkbox"
+                       th:value="${ingredients.id}"/>
+                <span th:text="${ingredients.name}">ingredients</span><br/>
+            </div>
+
+            <h3>Designate your protein:</h3>
+            <div th:each="ingredients : ${protein}" id="protein">
+                <input th:field="*{ingredients}" type="checkbox"
+                       th:value="${ingredients.id}"/>
+                <span th:text="${ingredients.name}">ingredients</span><br/>
+            </div>
+
+            <h3>Designate your veggies:</h3>
+            <div th:each="ingredients : ${veggies}" id="veggies">
+                <input th:field="*{ingredients}" type="checkbox"
+                       th:value="${ingredients.id}"/>
+                <span th:text="${ingredients.name}">ingredients</span><br/>
+            </div>
+
+            <h3>Designate your cheese:</h3>
+            <div th:each="ingredients : ${cheese}" id="cheese">
+                <input th:field="*{ingredients}" type="checkbox"
+                       th:value="${ingredients.id}"/>
+                <span th:text="${ingredients.name}">ingredients</span><br/>
+            </div>
+
+            <h3>Designate your sause:</h3>
+            <div th:each="ingredients : ${sauce}" id="sause">
+                <input th:field="*{ingredients}" type="checkbox"
+                       th:value="${ingredients.id}"/>
+                <span th:text="${ingredients.name}">ingredients</span><br/>
+            </div>
+
+            <div>
+                <h3>Name your taco creation:</h3>
+                <input type="text" th:field="*{name}"/>
+                <br/>
+                <button>Submit Your Taco</button>
+                <br/>
+                <span class="validationError"
+                      th:if="${#fields.hasErrors('name')}"
+                      th:errors="*{name}">Name Error</span>
+                <br/>
+                <span class="validationError"
+                      th:if="${#fields.hasErrors('ingredients')}"
+                      th:errors="*{ingredients}">Ingredients Error</span>
+            </div>
+    </form>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Taco Cloud</title>
+</head>
+<body>
+    <img th:src="@{/images/TacoCloud.png}"/>
+    <br/>
+    <a href="/login">Back to log in</a>
+
+    <h1>Register a new user</h1>
+
+    <form method="post" th:object="${user}">
+    <div>
+        <h3>Register new user:</h3>
+        <label for="login">Login:</label>
+        <input type="text" th:field="*{login}" id="login"/>
+        <br/>
+        <label for="password">Password:</label>
+        <input type="text" th:field="*{password}" id="password"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('login')}"
+              th:errors="*{login}">CC Num Error</span>
+        <br/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('password')}"
+              th:errors="*{password}">Password Error</span>
+        <br/>
+        <button th:action="submit">Register</button>
+        <br/>
+    </div>
+</form>
+</body>
+</html>
